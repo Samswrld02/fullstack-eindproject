@@ -4,7 +4,7 @@ include "databaseConnection.php";
 
 
 
-class netland
+class Netland
 {
     private static $conn;
     public function __construct($conn)

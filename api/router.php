@@ -10,7 +10,7 @@ function router($conn)
     switch ($data->action) {
         case "show":
             //call method to fetch results using dependancy injection
-            $test = new NetLand($conn);
+            $test = new Netland($conn);
             $dataArray = $test->showResults();
             //return array to front end
             header("Content-Type: application/json");

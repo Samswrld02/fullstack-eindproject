@@ -1,5 +1,6 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
@@ -10,9 +11,9 @@
 
 <body>
     <h1>Welkom op het netland beheerders paneel</h1>
-    
+
     <div>
-        <table class = "series">
+        <table class="series">
             <p class="header">Series</p>
             <tr>
                 <th>Title</th>
@@ -21,7 +22,7 @@
 
         </table>
 
-        <table class ="films">
+        <table class="films">
             <p class="header">Films</p>
             <tr>
                 <th>Title</th>
@@ -30,4 +31,5 @@
         </table>
     </div>
 </body>
+
 </html>

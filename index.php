@@ -5,8 +5,28 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
     <script src="./script/app.js" defer></script>
+    <link rel="stylesheet" href="./css/style.css">
 </head>
+
 <body>
+    <h1>Welkom op het netland beheerders paneel</h1>
     
+    <div class = "series">
+        <p class="header">Series</p>
+        <tr>
+            <th>Title</th>
+            <th>Rating</th>
+        </tr>
+
+    </div>
+
+    <div class ="films">
+        <p class="header">Films</p>
+        <tr>
+            <th>Title</th>
+            <th>Duur</th>
+        </tr>
+
+    </div>
 </body>
 </html>

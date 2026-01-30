@@ -1,6 +1,4 @@
 //make fetch request for data when page loads in
-
-
 async function getData() {
     let data = {action: "show"}
     const url = "api/router.php";
@@ -13,12 +11,10 @@ async function getData() {
         if (!response.ok) {
             throw new Error(`Response status: ${response.status}`);
         }
-
         const result = await response.json();
         console.log(result);
         
         showdata(result);
-
     } catch (error) {
         console.error(error.message);
     }
@@ -28,15 +24,12 @@ getData();
 
 //function to show data
 function showdata(data) {
-
         offset = createElementsSeries(data);
         createElementsFilms(data, offset);
-
 }
 
 function createElementsSeries(data) {
     for (let l = 0; l < data.length; l+=2) {
-      
             for (let o = 0; o < data[l].length; o++) {
                 //looping through array pair individually
                 console.log("--");
@@ -44,7 +37,6 @@ function createElementsSeries(data) {
                 let first = data[l][o].title;
                 let second = data[l][o].rating;
             
-
                 //create row
                 let row = document.createElement("TR");
                 num = o.toString();
@@ -61,8 +53,6 @@ function createElementsSeries(data) {
                     td.innerHTML = array[x][1];
                     document.querySelector(`.tr${num}`).appendChild(td);
                 }
-
-            
             }
         //return offset for next dom td creation
         return num;
@@ -83,7 +73,6 @@ function createElementsFilms(data, offset) {
                 let first = data[l][o].title;
                 let second = data[l][o].rating;
             
-                
                 //create row
                 let row = document.createElement("TR");
                 num = (num + o).toString();
@@ -100,11 +89,7 @@ function createElementsFilms(data, offset) {
                     td.innerHTML = array[x][1];
                     document.querySelector(`.tr${num}`).appendChild(td);
                 }
-
-
             }
-        
     }
-
 }
     

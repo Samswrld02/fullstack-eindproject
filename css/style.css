@@ -16,4 +16,10 @@ div {
     align-items: center;
 }
 
+td, th {
+    background-color: rgb(116, 113, 113);
+    opacity: 0.5;
+    padding: 10px;
+    text-align: center;
+}
 

@@ -26,9 +26,10 @@ class Database
         if (self::$connection == null) {
             try {
                 self::$connection = new PDO(self::$dsn, self::$user, self::$pw, self::$options);
-                //echo "connected to database";
             } catch (PDOException $e) {
-                //echo "something went wrong: {$e->getMessage()}}";
+                header("Content-Type: application/json");
+                echo json_encode($e->getMessage());
+                exit;
             }
         }
         return self::$connection;

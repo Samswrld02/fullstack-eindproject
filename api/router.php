@@ -1,9 +1,9 @@
 <?php
+
 include "netland.php";
 
-
-
-function router($conn) {
+function router($conn)
+{
     //collect json request stream
     $data = json_decode(file_get_contents("php://input"));
 
@@ -15,11 +15,8 @@ function router($conn) {
             //return array to front end
             header("Content-Type: application/json");
             echo json_encode($dataArray);
-            exit;      
+            exit;
     }
-
-    
-   
 }
 
 router($conn);

@@ -4,14 +4,16 @@
 include "config_files/config.php";
 
 
-class Database {
+class Database
+{
     private static $connection;
     private static $dsn;
     private static $user;
     private static $pw;
     private static $options;
 
-    public function __construct($dsn, $user, $pw, $options) {
+    public function __construct($dsn, $user, $pw, $options)
+    {
         self::$dsn = $dsn;
         self::$user = $user;
         self::$pw = $pw;
@@ -23,9 +25,9 @@ class Database {
         //singleton pattern, only create on connection
         if (self::$connection == null) {
             try {
-            self::$connection = new PDO(self::$dsn,self::$user, self::$pw, self::$options);
-            //echo "connected to database";
-            } catch (PDOException $e) { 
+                self::$connection = new PDO(self::$dsn, self::$user, self::$pw, self::$options);
+                //echo "connected to database";
+            } catch (PDOException $e) {
                 //echo "something went wrong: {$e->getMessage()}}";
             }
         }
@@ -39,13 +41,3 @@ new Database($dsn, $user, $pw, $options);
 
 //create database instance
 $conn = Database::createConnection();
-
-
-
-
-
-
-
-
-
-

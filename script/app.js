@@ -26,14 +26,23 @@ async function getData() {
 
 getData();
 
+//function to show data
 function showdata(data) {
 
-            for (let o = 0; o < data[0].length; o++) {
+        offset = createElementsSeries(data);
+        createElementsFilms(data, offset);
+
+}
+
+function createElementsSeries(data) {
+    for (let l = 0; l < data.length; l+=2) {
+      
+            for (let o = 0; o < data[l].length; o++) {
                 //looping through array pair individually
                 console.log("--");
                 
-                let first = data[0][o].title;
-                let second = data[0][o].rating;
+                let first = data[l][o].title;
+                let second = data[l][o].rating;
             
 
                 //create row
@@ -42,7 +51,46 @@ function showdata(data) {
                 row.setAttribute("class", `tr${num}`);
                 document.querySelector(".series").appendChild(row);
                 
-                array = data[0][o];
+                array = data[l][o];
+                //turn object into array
+                array = Object.entries(array)
+                
+                for (let x = 0; x < array.length; x++) {
+                    console.log(array[x][1]);
+                    let td = document.createElement("TD");
+                    td.innerHTML = array[x][1];
+                    document.querySelector(`.tr${num}`).appendChild(td);
+                }
+
+            
+            }
+        //return offset for next dom td creation
+        return num;
+    }
+
+}
+
+function createElementsFilms(data, offset) {
+    //set the offset as baseline
+    num = offset;
+
+    for (let l = 1; l < data.length; l++) {
+      
+            for (let o = 0; o < data[l].length; o++) {
+                //looping through array pair individually
+                console.log("--");
+                
+                let first = data[l][o].title;
+                let second = data[l][o].rating;
+            
+                
+                //create row
+                let row = document.createElement("TR");
+                num = (num + o).toString();
+                row.setAttribute("class", `tr${num}`);
+                document.querySelector(".films").appendChild(row);
+                
+                array = data[l][o];
                 //turn object into array
                 array = Object.entries(array)
                 
@@ -57,4 +105,6 @@ function showdata(data) {
             }
         
     }
+
+}
     

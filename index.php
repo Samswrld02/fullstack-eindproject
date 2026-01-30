@@ -11,22 +11,23 @@
 <body>
     <h1>Welkom op het netland beheerders paneel</h1>
     
-    <div class = "series">
-        <p class="header">Series</p>
-        <tr>
-            <th>Title</th>
-            <th>Rating</th>
-        </tr>
+    <div>
+        <table class = "series">
+            <p class="header">Series</p>
+            <tr>
+                <th>Title</th>
+                <th>Rating</th>
+            </tr>
 
-    </div>
+        </table>
 
-    <div class ="films">
-        <p class="header">Films</p>
-        <tr>
-            <th>Title</th>
-            <th>Duur</th>
-        </tr>
-
+        <table class ="films">
+            <p class="header">Films</p>
+            <tr>
+                <th>Title</th>
+                <th>Duur</th>
+            </tr>
+        </table>
     </div>
 </body>
 </html>

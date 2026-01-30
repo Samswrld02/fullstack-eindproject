@@ -1,6 +1,12 @@
 <?php
+/*error_reporting(E_ALL);
+ini_set('dislay_errors', 0);
+ini_set("log_errors", 1);
+ini_set("error_log", "path");
+*/
 //import right config for database
 include "config_files/config.php";
+
 
 class Database {
     private static $connection;
@@ -22,24 +28,27 @@ class Database {
         if (self::$connection == null) {
             try {
             self::$connection = new PDO(self::$dsn,self::$user, self::$pw, self::$options);
-            echo "connected to database";
+            //echo "connected to database";
             } catch (PDOException $e) { 
-                echo "something went wrong: {$e->getMessage()}}";
+                //echo "something went wrong: {$e->getMessage()}}";
             }
         }
         return self::$connection;
     }
 }
 
-function main ($dsn, $user, $pw, $options) {
-    //set data from config 
-    new Database($dsn, $user, $pw, $options);
 
-    //create database instance
-    Database::createConnection();
-}
+//set data from config 
+new Database($dsn, $user, $pw, $options);
 
-main($dsn, $user, $pw, $options);
+//create database instance
+$conn = Database::createConnection();
+
+
+
+
+
+
 
 
 

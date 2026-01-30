@@ -19,11 +19,10 @@ $options =
 ];
 
 try {
-//create pdo connection instance
-$pdo = new PDO($dsn, $user, $pw, $options);
-echo "connected to database $db";
-} 
-catch (PDOException $e) {
+    //create pdo connection instance
+    $pdo = new PDO($dsn, $user, $pw, $options);
+    echo "connected to database $db";
+} catch (PDOException $e) {
     echo "connection failed: {$e->getMessage()}";
 }
 

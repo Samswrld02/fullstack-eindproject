@@ -1,0 +1,9 @@
+#turn on redirect engine
+RewriteEngine On
+
+# if its a real file or path leave it alone
+RewriteCond %{REQUEST_FILENAME} !-f
+RewriteCond %{REQUEST_FILENAME} !-d
+
+# redirect to router and append url to it
+RewriteRule ^(.*)$ api/router.php/$1 [L,QSA]

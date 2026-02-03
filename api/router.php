@@ -2,6 +2,7 @@
 require_once "netland.php";
 require_once "databaseConnection.php";
 
+//main router for receiving requests
 function router($conn)
 {
     
@@ -35,6 +36,7 @@ function router($conn)
     
 }
 
+//middleware
 function allowedResource($resource) {
     //allowedResources 
     $allowedResources = ["series", "movies"];

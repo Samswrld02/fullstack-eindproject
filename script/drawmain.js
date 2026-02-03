@@ -31,6 +31,7 @@ function mainTemplate (arrayS, arrayM) {
     `
 }
 
+//create rows for eitehr series or movies based on array input
 function createRowsMain(array) {
      row = array.map((row) => {
         return `

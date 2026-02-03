@@ -18,8 +18,16 @@ function detailTemplate(result) {
     descript.className = "descript";
     container.appendChild(descript);
 
-    //append created string using map to innerhtml
+    //append created template string using map to innerhtml
     descript.innerHTML = createDescription(result);
+
+    //create youtube video container 
+    let ytVid = document.createElement("div");
+    ytVid.className = "ytContainer";
+    container.appendChild(ytVid);
+
+    //check if array is movie or not and append template string  to innerhtml
+    result[0].length_in_minutes ? ytVid.innerHTML = videoTemplate(result) : "" ;
 }
 
 //rows for description page of series
@@ -73,5 +81,15 @@ function createRowsM(array) {
 function createDescription(array) {
     return array.map((row) => {
         return `<p>${row.summary}</p>`;
+    }).join("");
+}
+
+//template for creating youtube embed
+function videoTemplate(array) {
+    return array.map((item) => {
+        return `<iframe width="420" height="315"
+            src="https://www.youtube.com/embed/${item.youtube_trailer_id}">
+        </iframe>
+        `
     }).join("");
 }

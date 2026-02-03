@@ -18,9 +18,9 @@ class Netland
 
         //map resource either series or movies
         $series = $resource;
-        
+
         //if id is given create substmt
-        if (!isset($id)){
+        if (!isset($id)) {
             $subStmt = "";
             $data = null;
         } else {
@@ -34,8 +34,8 @@ class Netland
         $stmt = $conn->prepare($sql);
 
         $stmt->execute($data);
-        
-    
+
+
         return $stmt->fetchAll();
     }
 }

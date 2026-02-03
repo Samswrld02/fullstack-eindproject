@@ -5,11 +5,10 @@ require_once "databaseConnection.php";
 //main router for receiving requests
 function router($conn)
 {
-    
+
     //collect request method for basic crud functionality
     $method = $_SERVER['REQUEST_METHOD'];
     try {
-
         //check resources and sanitize
         $resources = getResources();
         $resource = $resources[0];
@@ -31,27 +30,28 @@ function router($conn)
                 break;
         }
     } catch (Exception $e) {
-            echo $e->getMessage();
+        echo $e->getMessage();
     }
-    
 }
 
 //middleware
-function allowedResource($resource) {
+function allowedResource($resource)
+{
     //allowedResources 
     $allowedResources = ["series", "movies"];
-    if (!in_array($resource, $allowedResources)){
+    if (!in_array($resource, $allowedResources)) {
         if ($resource != null) {
             throw new Exception("resource doesn't exist");
         } else {
             //stop script if no resource if given
             exit;
         }
-    } 
+    }
 }
 
 //collect resource info
-function getResources() {
+function getResources()
+{
     $path = $_SERVER['PATH_INFO'];
     $path = trim($path, "/");
 
@@ -72,4 +72,3 @@ function getResources() {
 
 
 router($conn);
-

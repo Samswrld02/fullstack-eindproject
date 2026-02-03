@@ -1,7 +1,7 @@
 <?php
 
 //import right config for database
-include "config_files/config.php";
+require_once "config_files/config.php";
 
 
 class Database

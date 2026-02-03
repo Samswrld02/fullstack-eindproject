@@ -12,30 +12,30 @@ class Netland
         self::$conn = $conn;
     }
 
-    public function showResults()
+    public function getAll($resource, $id)
     {
         $conn = self::$conn;
-        $sql = "SELECT title, rating  FROM series";
-        $sql1 = "SELECT titel, duur FROM films";
-        $result0 = [];
-        $result1 = [];
-        $result = [];
-        $x = 0;
 
-        foreach ($conn->query($sql) as $row) {
-            $x++;
-            array_push($result0, $row);
+        //map resource either series or movies
+        $series = $resource;
+        
+        //if id is given create substmt
+        if (!isset($id)){
+            $subStmt = "";
+            $data = null;
+        } else {
+            $subStmt = "WHERE id = :id";
+            $data = ["id" => $id];
         }
 
-        //store results of first query as nested array
-        array_push($result, $result0);
-        foreach ($conn->query($sql1) as $row) {
-            $x++;
-            array_push($result1, $row);
-        }
+        //create pdo query
+        $sql = "SELECT * FROM {$series} {$subStmt}";
+        //prepared statement
+        $stmt = $conn->prepare($sql);
 
-        array_push($result, $result1);
-        //collect results
-        return $result;
+        $stmt->execute($data);
+        
+    
+        return $stmt->fetchAll();
     }
 }

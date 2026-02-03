@@ -1,22 +1,73 @@
 <?php
-
-include "netland.php";
+require_once "netland.php";
+require_once "databaseConnection.php";
 
 function router($conn)
 {
-    //collect json request stream
-    $data = json_decode(file_get_contents("php://input"));
+    
+    //collect request method for basic crud functionality
+    $method = $_SERVER['REQUEST_METHOD'];
+    try {
 
-    switch ($data->action) {
-        case "show":
-            //call method to fetch results using dependancy injection
-            $test = new Netland($conn);
-            $dataArray = $test->showResults();
-            //return array to front end
-            header("Content-Type: application/json");
-            echo json_encode($dataArray);
-            exit;
+        //check resources and sanitize
+        $resources = getResources();
+        $resource = $resources[0];
+        $id = $resources[1];
+
+        switch ($method) {
+            case "GET":
+                //run method for quering results
+                $data = new Netland($conn);
+                $data = $data->getAll($resource, $id);
+                header("Content-Type: application/json");
+                echo json_encode($data);
+                break;
+            case "PUT":
+                break;
+            case "DELETE":
+                break;
+            case "POST":
+                break;
+        }
+    } catch (Exception $e) {
+            echo $e->getMessage();
     }
+    
 }
 
+function allowedResource($resource) {
+    //allowedResources 
+    $allowedResources = ["series", "movies"];
+    if (!in_array($resource, $allowedResources)){
+        if ($resource != null) {
+            throw new Exception("resource doesn't exist");
+        } else {
+            //stop script if no resource if given
+            exit;
+        }
+    } 
+}
+
+//collect resource info
+function getResources() {
+    $path = $_SERVER['PATH_INFO'];
+    $path = trim($path, "/");
+
+    //seperate path
+    $resourceInfo = explode("/", $path);
+
+    //check if resources exist
+    $resource = $resourceInfo[0] ?? null;
+    $id = $resourceInfo[1] ?? null;
+
+    $resources = [$resource, $id];
+
+    //check if resource is allowed
+    allowedResource($resource);
+
+    return $resources;
+}
+
+
 router($conn);
+

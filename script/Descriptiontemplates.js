@@ -94,3 +94,16 @@ function videoTemplate(array) {
     }).join("");
 }
 
+//handle te get request for data and execute templates for html drawing
+async function handleRequest(resource, id) {
+    let result = await get(resource, id);
+    console.log(result);
+
+    //run template of showing descriptions and details about singular
+    //movie or series
+    detailTemplate(result, resource);
+}
+
+
+
+

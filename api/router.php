@@ -15,13 +15,15 @@ function router($conn)
         $resource = $resources[0];
         $id = $resources[1];
         $order = $resources[2];
+        $dir = $resources[3];
+        //ECHO $dir;
 
 
         switch ($method) {
             case "GET":
                 //run method for quering results
                 $data = new Netland($conn);
-                $data = $data->getAll($resource, $id, $order);
+                $data = $data->getAll($resource, $id, $order, $dir);
                 header("Content-Type: application/json");
                 echo json_encode($data);
                 break;
@@ -67,8 +69,12 @@ function getResources()
     //pull sorting request from query string
     $sort = $_GET['sort'] ?? null;
     $sort = trim($sort, "\n");
+    
+    $dir = $_GET['dir'] ?? null;
+    $dir = trim($dir, "/");
 
-    $resources = [$resource, $id, $sort];
+
+    $resources = [$resource, $id, $sort, $dir];
 
     //check if resource is allowed
     allowedResource($resource);

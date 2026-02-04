@@ -1,5 +1,6 @@
 let container = document.querySelector(".container");
 
+
 //central event listener with targeted responses based on classname
 // s == series or m == movies
 container.addEventListener("click", (e) => {
@@ -11,7 +12,7 @@ container.addEventListener("click", (e) => {
 
         //checking for sorting request
     } else if (e.target.className == "m") {
-        console.log(e.target.dataset.id);
+        //console.log(e.target.dataset.id);
         let resource = "movies";
         let id = e.target.dataset.id;
         //make request 
@@ -21,22 +22,30 @@ container.addEventListener("click", (e) => {
     } else if (e.target.className == "sort") {
         //make request
         if (e.target.id.charAt(e.target.id.length - 1) == "S") {
+            if (e.target.id == "titleS") {
+                direction = toggle1();
+            } else {
+                direction = toggle2();
+            }
             let resource = "series";
             let orderkey = e.target.id.substring(0, e.target.id.length - 1);
 
             //call template function for redrawing
-            mainTemplateSort(resource, orderkey);
-
+            mainTemplateSort(resource, orderkey, direction);
 
         } else if (e.target.id.charAt(e.target.id.length - 1) == "M") {
+            if (e.target.id == "titleM") {
+                //different toggle for each column
+                direction = toggle1();
+            } else {
+                direction = toggle2();
+            }
             //movie request
             let resource = "movies";
             let orderkey = e.target.id.substring(0, e.target.id.length - 1);
             //call template function for redrawing
-            mainTemplateSort(resource, orderkey);
+            mainTemplateSort(resource, orderkey, direction);
         }
-
-
     }
 })
 
@@ -50,7 +59,4 @@ async function handleRequest(resource, id) {
     detailTemplate(result, resource);
 }
 
-async function handleSort(resource, orderkey) {
-    let result = await get(resource, "", orderkey);
-    return result;
-}
+

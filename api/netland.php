@@ -12,11 +12,11 @@ class Netland
         self::$conn = $conn;
     }
 
-    public function getAll($resource, $id, $orderKey = null)
+    public function getAll($resource, $id, $orderKey = null, $dir = null)
     {
         //check if its a sorting request and return result
         if ($orderKey) {
-            $result = $this->OrderAll($resource, $orderKey);
+            $result = $this->OrderAll($resource, $orderKey, $dir);
             return $result;
         }
 
@@ -55,7 +55,7 @@ class Netland
         return $orderKey;
     }
 
-    public function OrderAll($resource, $orderKey)
+    public function OrderAll($resource, $orderKey, $dir)
     {
         //function to sort by key given
         $orderKey = $this->ValidateOrderRequest($orderKey);
@@ -63,7 +63,7 @@ class Netland
         $conn = self::$conn;
 
         //sql statement
-        $sql = "SELECT * FROM {$resource} ORDER BY {$orderKey} DESC";
+        $sql = "SELECT * FROM {$resource} ORDER BY {$orderKey} {$dir}";
 
         //prepare statement and execute
         $stmt = $conn->prepare($sql);

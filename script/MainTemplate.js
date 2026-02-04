@@ -12,8 +12,8 @@ function mainTemplate(arrayS, arrayM) {
         <h1>series</h1>
     <table class ='series'>
         <tr>
-            <th id="titleS" class="sort">Title</th>
-            <th id="ratingS" class="sort">Rating</th>
+            <th id="titleS" class="sort"><span class="heading">Title</span></th>
+            <th id="ratingS"  class="sort"><span class="heading">Rating</span></th>
             <th>Details</th>
         </tr>
         ${seriesRows}
@@ -22,8 +22,8 @@ function mainTemplate(arrayS, arrayM) {
     <h1>films</h1>
     <table class = 'movies'>
         <tr>
-            <th id="titleM" class="sort">Title</th>
-            <th id="length_in_minutesM" class="sort">Duur</th>
+            <th id="titleM" class="sort"><span class="heading">Title</span</th>
+            <th id="length_in_minutesM" class="sort"><span class="heading">Duur</span></th>
             <th>Details</th>
         </tr>
         ${moviesRows}

@@ -28,3 +28,16 @@ p {
     font-size: 1rem;
 }
 
+.heading {
+    border-bottom: solid black 1px;
+}
+
+.sort:hover {
+    cursor: pointer;
+    background-color: black;
+}
+
+.s:hover , .m:hover {
+    background-color: black;
+    cursor: pointer;
+}

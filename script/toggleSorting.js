@@ -3,7 +3,7 @@ sortClicked1 = true;
 sortClicked2 = true;
 
 //toggle function
-function toggle1() { 
+function toggle1() {
     //set toggle for sorting
     if (sortClicked1 == true) {
         direction = "ASC";
@@ -35,8 +35,8 @@ async function mainTemplateSort(resource, orderkey, direction) {
     //rewrite template based on resource
     let main = `
         <tr>
-            <th id="${resource == "series" ? "titleS" : "titleM"}" class="sort">Title</th>
-            <th id="${resource == "series" ? "ratingS" : "length_in_minutesM"}" class="sort">${resource == "series" ? "Rating" : "Duur"}</th>
+            <th id="${resource == "series" ? "titleS" : "titleM"}" class="sort"><span class="heading">Title</span></th>
+            <th id="${resource == "series" ? "ratingS" : "length_in_minutesM"}" class="sort"><span class="heading">${resource == "series" ? "Rating" : "Duur"}</span></th>
             <th>Details</th>
         </tr>
         ${sortingTemplate(array)}

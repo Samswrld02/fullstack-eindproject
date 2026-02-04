@@ -38,4 +38,32 @@ class Netland
 
         return $stmt->fetchAll();
     }
+
+    private function ValidateOrderRequest($orderKey) {
+        //validate order key
+        $allowedOrders = ["title", "rating", "length_in_minutes"];
+        if (!in_array($orderKey, $allowedOrders)) {
+            throw new Exception("not a valid sort!");
+        }
+        return $orderKey;
+    }
+
+    public function OrderAll($resource, $orderKey) {
+        //function to sort by key given
+        $orderKey = $this->ValidateOrderRequest($orderKey);
+
+        $conn = self::$conn;
+
+        $data = ["orderkey" => $orderKey];
+        //sql statement
+        $sql = "SELECT * FROM {$resource} ORDER BY :orderkey";
+
+        //prepare statement and execute
+        $stmt = $conn->preprare($sql);
+        $stmt->execute($data);
+
+        while ($row = $stmt->fetch()) {
+            echo $row;
+        }
+    }
 }

@@ -7,7 +7,7 @@ function detailTemplate(result) {
             <th>information</th>
             <th>information</th>
         </tr>
-        ${result[0].length_in_minutes ? createRowsM(result): createRowsS(result)}
+        ${result[0].length_in_minutes ? createRowsM(result) : createRowsS(result)}
     </table>
     `;
     let container = document.querySelector(".container");
@@ -27,7 +27,7 @@ function detailTemplate(result) {
     container.appendChild(ytVid);
 
     //check if array is movie or not and append template string  to innerhtml
-    result[0].length_in_minutes ? ytVid.innerHTML = videoTemplate(result) : "" ;
+    result[0].length_in_minutes ? ytVid.innerHTML = videoTemplate(result) : "";
 }
 
 //rows for description page of series
@@ -35,7 +35,7 @@ function createRowsS(array) {
     return array.map((row) => {
         return `<tr>
             <td>Awards</td>
-            <td>${row.has_won_awards > 0 ? "ja" : "nee" }</td>
+            <td>${row.has_won_awards > 0 ? "ja" : "nee"}</td>
         </tr>
         <tr>
             <td>Seasons</td>
@@ -60,7 +60,7 @@ function createRowsS(array) {
 //rows for description page of movies
 function createRowsM(array) {
     return array.map((row) => {
-       return `
+        return `
         <tr>
             <td>Datum van uitkomst</td>
             <td>${row.released_at}</td>
@@ -93,3 +93,4 @@ function videoTemplate(array) {
         `
     }).join("");
 }
+

@@ -1,19 +1,19 @@
 
-function mainTemplate (arrayS, arrayM) {
+function mainTemplate(arrayS, arrayM) {
     let container = document.querySelector(".container");
-    
+
     //row for series
     let seriesRows = createRowsMain(arrayS);
 
     //row for movies
     let moviesRows = createRowsMain(arrayM);
 
-    container.innerHTML = `
+    let template = `
         <h1>series</h1>
     <table class ='series'>
         <tr>
-            <th>Title</th>
-            <th>Rating</th>
+            <th id="titleS" class="sort">Title</th>
+            <th id="ratingS" class="sort">Rating</th>
             <th>Details</th>
         </tr>
         ${seriesRows}
@@ -22,22 +22,27 @@ function mainTemplate (arrayS, arrayM) {
     <h1>films</h1>
     <table class = 'movies'>
         <tr>
-            <th>Title</th>
-            <th>Duur</th>
+            <th id="titleM" class="sort">Title</th>
+            <th id="length_in_minutesM" class="sort">Duur</th>
             <th>Details</th>
         </tr>
         ${moviesRows}
     </table>
-    `
+    `;
+
+
+    container.innerHTML = template;
+
+    return template;
 }
 
 //create rows for eitehr series or movies based on array input
 function createRowsMain(array) {
-     row = array.map((row) => {
+    row = array.map((row) => {
         return `
         <tr>
             <td>${row.title}</td>
-            <td>${row.length_in_minutes ? row.length_in_minutes : row.rating }</td>
+            <td>${row.length_in_minutes ? row.length_in_minutes : row.rating}</td>
             <td class=${row.length_in_minutes ? "m" : "s"} data-id= ${row.id}>bekijk details</td>
         </tr>  
         `

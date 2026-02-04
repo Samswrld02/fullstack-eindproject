@@ -1,11 +1,11 @@
 //make fetch request for data when page loads in
 
 //basic fetch function to be called for requesting resources
-async function get(resource, id = "") {
+async function get(resource, id = "", orderkey = "") {
     //create url based on arguments passed
-    const url = `api/router.php/${resource}/${id}`;
+    const url = `api/router.php/${resource}/${id}?sort=${orderkey}`;
     console.log(url);
-    
+
     try {
         let response = await fetch(url);
         if (!response.ok) {
@@ -23,20 +23,10 @@ async function get(resource, id = "") {
 async function firstLoadData() {
     let dataMovies = await get("movies");
     let dataSeries = await get("series");
-    
-    //run main template of the site function
-    mainTemplate(dataSeries, dataMovies);
+
+    //run main template of the site function and store mainTemplate for later use
+    let Maintemplate = mainTemplate(dataSeries, dataMovies);
+    return Maintemplate;
 }
 
 firstLoadData();
- 
-
-
-
-
-
-
-
-
-
- 

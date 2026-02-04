@@ -12,8 +12,14 @@ class Netland
         self::$conn = $conn;
     }
 
-    public function getAll($resource, $id)
+    public function getAll($resource, $id, $orderKey = null)
     {
+        //check if its a sorting request and return result
+        if ($orderKey) {
+            $result = $this->OrderAll($resource, $orderKey);
+            return $result;
+        }
+
         $conn = self::$conn;
 
         //map resource either series or movies
@@ -39,7 +45,8 @@ class Netland
         return $stmt->fetchAll();
     }
 
-    private function ValidateOrderRequest($orderKey) {
+    private function ValidateOrderRequest($orderKey)
+    {
         //validate order key
         $allowedOrders = ["title", "rating", "length_in_minutes"];
         if (!in_array($orderKey, $allowedOrders)) {
@@ -48,22 +55,21 @@ class Netland
         return $orderKey;
     }
 
-    public function OrderAll($resource, $orderKey) {
+    public function OrderAll($resource, $orderKey)
+    {
         //function to sort by key given
         $orderKey = $this->ValidateOrderRequest($orderKey);
 
         $conn = self::$conn;
 
-        $data = ["orderkey" => $orderKey];
         //sql statement
-        $sql = "SELECT * FROM {$resource} ORDER BY :orderkey";
+        $sql = "SELECT * FROM {$resource} ORDER BY {$orderKey} DESC";
 
         //prepare statement and execute
-        $stmt = $conn->preprare($sql);
-        $stmt->execute($data);
+        $stmt = $conn->prepare($sql);
 
-        while ($row = $stmt->fetch()) {
-            echo $row;
-        }
+        $stmt->execute();
+
+        return $stmt->fetchAll();
     }
 }

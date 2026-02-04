@@ -9,6 +9,7 @@
     <script src="./script/drawmain.js" defer></script>
     <script src="./script/eventlistner.js" defer></script>
     <script src="./script/templates.js" defer></script>
+    <script src="./script/sortingTemplate.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 

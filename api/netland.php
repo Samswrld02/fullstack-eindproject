@@ -45,7 +45,7 @@ class Netland
         return $stmt->fetchAll();
     }
 
-    private function ValidateOrderRequest($orderKey)
+    private function validateOrderRequest($orderKey)
     {
         //validate order key
         $allowedOrders = ["title", "rating", "length_in_minutes"];
@@ -55,10 +55,10 @@ class Netland
         return $orderKey;
     }
 
-    public function OrderAll($resource, $orderKey, $dir)
+    public function orderAll($resource, $orderKey, $dir)
     {
         //function to sort by key given
-        $orderKey = $this->ValidateOrderRequest($orderKey);
+        $orderKey = $this->validateOrderRequest($orderKey);
 
         $conn = self::$conn;
 

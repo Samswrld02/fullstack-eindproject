@@ -16,9 +16,7 @@ function router($conn)
         $id = $resources[1];
         $order = $resources[2];
         $dir = $resources[3];
-        //ECHO $dir;
-
-
+        
         switch ($method) {
             case "GET":
                 //run method for quering results
@@ -69,7 +67,7 @@ function getResources()
     //pull sorting request from query string
     $sort = $_GET['sort'] ?? null;
     $sort = trim($sort, "\n");
-    
+
     $dir = $_GET['dir'] ?? null;
     $dir = trim($dir, "/");
 

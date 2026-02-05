@@ -1,6 +1,7 @@
 # fullstack micro-framework/backend endproject
 
 ## What did I make?
+(Note: this is still a work in progress.)
 I made a decoupled front end and backend based on information from a database. I made a custom rest based api, based on the mvc structure, with a custom router that takes pulls the routes from the url and uses it as data to query.
 
 ## Setup

@@ -33,6 +33,8 @@ async function update(resource, id, data) {
         }
         let result = await response.json();
         console.log(result);
+        //rerender the site
+        firstLoadData();
         return result;
     } catch (error) {
         console.log(error.message);

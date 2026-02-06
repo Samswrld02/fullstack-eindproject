@@ -16,7 +16,7 @@ async function renderEdit(resource, id) {
 
     //event listener for button
     let button = document.querySelector("#save");
-    button.addEventListener("click", (e) => {
+    button.addEventListener("click", async (e) => {
         //prevent default behavior
         e.preventDefault();
         let payload = createPayload(result);
@@ -24,8 +24,8 @@ async function renderEdit(resource, id) {
         
 
         //make fetch request for updating data
-        update(resource, id, payload);
-        
+        await update(resource, id, payload);
+
         //rerender the site
         firstLoadData();
     })
@@ -66,7 +66,5 @@ function createPayload(array) {
     }, {});
 
     return result;
-    
-
 }
 

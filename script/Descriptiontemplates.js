@@ -5,8 +5,10 @@ function detailTemplate(result) {
     let buttons = renderButtons(result);
 
     let mainTemplate = `
-    <h1>${result[0].title}</h>
+    <h1>${result[0].title}</h1>
+    <div class ="buttons">
     ${buttons}
+    </div>
     <table>
         <tr>
             <th>information</th>
@@ -113,20 +115,20 @@ async function handleRequest(resource, id) {
 
 //creating edit button
 function editButton(array) {
-   return array.map((item) => {
-    return `<button id="${item.length_in_minutes ? "m" : "s"}" class="edit" value=${item.id}>Edit Credentials</button>
+    return array.map((item) => {
+        return `<button id="${item.length_in_minutes ? "m" : "s"}" class="edit" value=${item.id}>Edit Credentials</button>
     <button id='return'>return</button>`;
-   }).join("");
+    }).join("");
 }
 
 //helper for adding buttons
-function renderButtons (array) {
+function renderButtons(array) {
     let buttons = array.map((item) => {
         //run button creation functions in here
         return editButton(array);
     }).join("");
     console.log(buttons);
-    
+
     return buttons;
 }
 

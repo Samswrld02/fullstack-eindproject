@@ -26,6 +26,11 @@ function router($conn)
                 echo json_encode($data);
                 break;
             case "PUT":
+                $data = json_decode(file_get_contents("php://input"), true);
+                $request = new Netland($conn);
+                $result = $request->update($resource, $id, $data);
+                echo json_encode($result);
+                
                 break;
             case "DELETE":
                 break;
@@ -33,7 +38,7 @@ function router($conn)
                 break;
         }
     } catch (Exception $e) {
-        echo $e->getMessage();
+        echo json_encode(["fail" => $e->getMessage()]);
     }
 }
 

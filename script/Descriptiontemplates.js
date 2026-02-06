@@ -1,7 +1,12 @@
+
 //function for description of every movie or series
 function detailTemplate(result) {
+    //create edit button and retrieve html
+    let buttons = renderButtons(result);
+
     let mainTemplate = `
     <h1>${result[0].title}</h>
+    ${buttons}
     <table>
         <tr>
             <th>information</th>
@@ -10,6 +15,8 @@ function detailTemplate(result) {
         ${result[0].length_in_minutes ? createRowsM(result) : createRowsS(result)}
     </table>
     `;
+
+    //initialize main container
     let container = document.querySelector(".container");
     container.innerHTML = mainTemplate;
 
@@ -102,6 +109,25 @@ async function handleRequest(resource, id) {
     //run template of showing descriptions and details about singular
     //movie or series
     detailTemplate(result, resource);
+}
+
+//creating edit button
+function editButton(array) {
+   return array.map((item) => {
+    return `<button id="${item.length_in_minutes ? "m" : "s"}" class="edit" value=${item.id}>Edit Credentials</button>
+    <button id='return'>return</button>`;
+   }).join("");
+}
+
+//helper for adding buttons
+function renderButtons (array) {
+    let buttons = array.map((item) => {
+        //run button creation functions in here
+        return editButton(array);
+    }).join("");
+    console.log(buttons);
+    
+    return buttons;
 }
 
 

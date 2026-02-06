@@ -1,6 +1,5 @@
 let container = document.querySelector(".container");
 
-
 //central event listener with targeted responses based on classname
 // s == series or m == movies
 container.addEventListener("click", (e) => {
@@ -46,8 +45,28 @@ container.addEventListener("click", (e) => {
             //call template function for redrawing
             mainTemplateSort(resource, orderkey, direction);
         }
+    } else if (e.target.className == "edit") {
+        //display edit page template
+        let id = e.target.value;
+        let resource;
+        if (e.target.id == "s") {
+            resource = "series";
+        } else {
+            resource = "movies";
+        }
+        console.log(resource, id);
+
+        renderEdit(resource, id);
     }
+    else if (e.target.id == "return") {
+        firstLoadData();
+
+    }
+
+
 })
+
+
 
 //handle te get request for data and execute templates for html drawing
 async function handleRequest(resource, id) {

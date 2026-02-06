@@ -41,3 +41,8 @@ p {
     background-color: black;
     cursor: pointer;
 }
+
+.editForm {
+    display: flex;
+    flex-direction: column;
+}

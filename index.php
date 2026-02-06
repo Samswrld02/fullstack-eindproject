@@ -11,6 +11,7 @@
     <script src="./script/MainTemplate.js" defer></script>
     <script src="./script/eventlistner.js" defer></script>
     <script src="./script/Descriptiontemplates.js" defer></script>
+    <script src="./script/editData/editpage.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 

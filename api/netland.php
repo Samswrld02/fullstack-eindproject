@@ -73,26 +73,24 @@ class Netland
         return $stmt->fetchAll();
     }
 
-    private function getArrayKeys($array) {
-        return array_keys($array);
-    }
-
-    public function update($resource, $id, $array) {
+    public function update($resource, $id, $array)
+    {
         $result = [];
-        $keys = $this->getArrayKeys($array);
         $conn = self::$conn;
 
-        //loop through keys to dynamically build statement
-        foreach ($keys as $column) {
-            $string = "$column = '$array[$column]' ";
+        //loop through keys to dynamically build prepared statement
+        foreach ($array as $column => $item) {
+            $string = "$column = :$column";
             array_push($result, $string);
         }
-        
+
         //turn array into query
         $subStmt = implode(", ", $result);
 
-        //prepared data
-        $data = ["id" => $id];
+        //prepared data, append id to the data array
+        $array['id'] = $id;
+        $data = $array;
+
         //sql statement
         $sql = "UPDATE {$resource} SET {$subStmt} WHERE id = :id";
 
@@ -101,6 +99,5 @@ class Netland
         $stmt->execute($data);
 
         return ["update" => "success"];
-
     }
 }

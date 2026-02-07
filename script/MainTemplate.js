@@ -36,14 +36,14 @@ function mainTemplate(arrayS, arrayM) {
     return template;
 }
 
-//create rows for eitehr series or movies based on array input
+//create rows for either series or movies based on array input
 function createRowsMain(array) {
     row = array.map((row) => {
         return `
         <tr>
             <td>${row.title}</td>
             <td>${row.length_in_minutes ? row.length_in_minutes : row.rating}</td>
-            <td class=${row.length_in_minutes ? "m" : "s"} data-id= ${row.id}>bekijk details</td>
+            <td class=${row.length_in_minutes != null ? "m" : "s"} data-id= ${row.id}>bekijk details</td>
         </tr>  
         `
     }).join("");

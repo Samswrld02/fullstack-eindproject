@@ -2,7 +2,7 @@
 async function get(resource, id = "", orderkey = "", direction = "") {
     //create url based on arguments passed
     const url = `api/router.php/${resource}/${id}?sort=${orderkey}&dir=${direction}`;
-    console.log(url);
+    //console.log(url);
 
     try {
         let response = await fetch(url);
@@ -20,12 +20,12 @@ async function get(resource, id = "", orderkey = "", direction = "") {
 async function update(resource, id, data) {
     //create url based on arguments passed
     const url = `api/router.php/${resource}/${id}`;
-    console.log(url);
+    //console.log(url);
 
     try {
         let response = await fetch(url, {
             method: 'PUT',
-            headers: {"Content-Type": 'application/json'},
+            headers: { "Content-Type": 'application/json' },
             body: JSON.stringify(data)
         });
         if (!response.ok) {
@@ -33,8 +33,7 @@ async function update(resource, id, data) {
         }
         let result = await response.json();
         console.log(result);
-        //rerender the site
-        firstLoadData();
+
         return result;
     } catch (error) {
         console.log(error.message);

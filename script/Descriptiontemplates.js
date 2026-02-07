@@ -14,7 +14,7 @@ function detailTemplate(result) {
             <th>information</th>
             <th>information</th>
         </tr>
-        ${result[0].length_in_minutes ? createRowsM(result) : createRowsS(result)}
+        ${result[0].length_in_minutes != null ? createRowsM(result) : createRowsS(result)}
     </table>
     `;
 
@@ -116,7 +116,7 @@ async function handleRequest(resource, id) {
 //creating edit button
 function editButton(array) {
     return array.map((item) => {
-        return `<button id="${item.length_in_minutes ? "m" : "s"}" class="edit" value=${item.id}>Edit Credentials</button>
+        return `<button id="${item.length_in_minutes != null ? "m" : "s"}" class="edit" value=${item.id}>Edit Credentials</button>
     <button id='return'>return</button>`;
     }).join("");
 }
@@ -127,7 +127,7 @@ function renderButtons(array) {
         //run button creation functions in here
         return editButton(array);
     }).join("");
-    console.log(buttons);
+    //console.log(buttons);
 
     return buttons;
 }

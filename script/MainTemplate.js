@@ -10,6 +10,7 @@ function mainTemplate(arrayS, arrayM) {
 
     let template = `
         <h1>series</h1>
+        ${createButton("series")}
     <table class ='series'>
         <tr>
             <th id="titleS" class="sort"><span class="heading">Title</span></th>
@@ -20,6 +21,7 @@ function mainTemplate(arrayS, arrayM) {
     </table>
 
     <h1>films</h1>
+    ${createButton("movies")}
     <table class = 'movies'>
         <tr>
             <th id="titleM" class="sort"><span class="heading">Title</span</th>
@@ -52,3 +54,8 @@ function createRowsMain(array) {
 
 }
 
+function createButton(resource) {
+    //take the array and base class based on which resource
+    temp = `<button class="${resource}Add" value="${resource}">add ${resource}</button>`
+    return temp;
+}

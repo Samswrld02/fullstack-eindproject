@@ -2,7 +2,7 @@ let container = document.querySelector(".container");
 
 //central event listener with targeted responses based on classname
 // s == series or m == movies
-container.addEventListener("click", (e) => {
+container.addEventListener("click", async (e) => {
     if (e.target.className == "s") {
         let resource = "series";
         let id = e.target.dataset.id;
@@ -61,6 +61,30 @@ container.addEventListener("click", (e) => {
     else if (e.target.id == "return") {
         firstLoadData();
 
+    }
+    else if (e.target.className == "seriesAdd" || e.target.className == "moviesAdd") {
+        if (e.target.value == "movies") {
+            //display data insert template
+             let info = {
+                title: "lmao",
+                length_in_minutes: 100,
+                released_at: "2018-01-14",
+                country_of_origin: "uk",
+                summary: "lol",
+                youtube_trailer_id: ""
+            };
+            console.log("clicked");
+            //start post request 
+            await insert(e.target.value, info);
+            firstLoadData();
+
+        } else if (e.target.value == "series") {
+            //display data insert template
+
+            //start post request
+            await insert(e.target.value, info)
+            firstLoadData();
+        }
     }
 
 

@@ -100,4 +100,32 @@ class Netland
 
         return ["update" => "success"];
     }
+
+    public function insert($resource, $data) {
+        //column stmt array
+        $columnsA = [];
+        //column prepared statement array
+        $columnsP = [];
+        $conn = self::$conn;
+
+        foreach ($data as $column => $value) {
+            $stmt = "$column";
+            $stmtV = ":$column";
+            array_push($columnsA, $stmt);
+            array_push($columnsP, $stmtV);
+        }
+
+        //create columns string seperated by ,
+        $columns = implode(", ", $columnsA);
+        $prepared = implode(", ", $columnsP);
+
+        //create query
+        $sql = "INSERT INTO {$resource} ({$columns}) VALUES ({$prepared})";
+
+        $pStmt = $conn->prepare($sql);
+
+        $pStmt->execute($data); 
+
+        return ["insert" => "success"];
+    }
 }

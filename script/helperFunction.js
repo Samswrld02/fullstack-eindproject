@@ -39,3 +39,23 @@ async function update(resource, id, data) {
         console.log(error.message);
     }
 }
+
+async function insert(resource, data) {
+    //create url baed on arguments
+    const url = `api/router.php/${resource}`;
+
+    try{
+        let response = await fetch(url, {
+            method: 'POST',
+            headers: {'Content-Type': 'application/json'},
+            body: JSON.stringify(data)
+        })
+        if (!response.ok) {
+            throw new Error(`something went wrong: ${response.status}`);
+        }
+        let result = await response.json();
+        console.log(result);
+    } catch (error) {
+        console.log(error.message);
+    }
+}

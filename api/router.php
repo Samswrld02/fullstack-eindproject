@@ -16,25 +16,31 @@ function router($conn)
         $id = $resources[1];
         $order = $resources[2];
         $dir = $resources[3];
+
+        //model instance
+        $request = new Netland($conn);
         
         switch ($method) {
             case "GET":
                 //run method for quering results
-                $data = new Netland($conn);
-                $data = $data->getAll($resource, $id, $order, $dir);
+                $result = $request->getAll($resource, $id, $order, $dir);
                 header("Content-Type: application/json");
-                echo json_encode($data);
+                echo json_encode($result);
                 break;
             case "PUT":
+                //run method for updating existing data
                 $data = json_decode(file_get_contents("php://input"), true);
-                $request = new Netland($conn);
                 $result = $request->update($resource, $id, $data);
                 echo json_encode($result);
-                
                 break;
             case "DELETE":
                 break;
             case "POST":
+                //run method for inserting new data
+                $data = json_decode(file_get_contents("php://input"), true);
+                $result = $request->insert($resource, $data);
+                header("Content-type: application/json");
+                echo json_encode($result);
                 break;
         }
     } catch (Exception $e) {

@@ -34,8 +34,6 @@ function mainTemplate(arrayS, arrayM) {
 
 
     container.innerHTML = template;
-
-    return template;
 }
 
 //create rows for either series or movies based on array input

@@ -3,13 +3,12 @@ let container = document.querySelector(".container");
 //central event listener with targeted responses based on classname
 // s == series or m == movies
 container.addEventListener("click", async (e) => {
+    //listner for description button
     if (e.target.className == "s") {
         let resource = "series";
         let id = e.target.dataset.id;
         //make request 
         handleRequest(resource, id);
-
-        //checking for sorting request
     } else if (e.target.className == "m") {
         //console.log(e.target.dataset.id);
         let resource = "movies";
@@ -17,7 +16,7 @@ container.addEventListener("click", async (e) => {
         //make request 
         handleRequest(resource, id);
 
-        //event handler for sorting 
+    //event handler for sorting 
     } else if (e.target.className == "sort") {
         //make request
         if (e.target.id.charAt(e.target.id.length - 1) == "S") {
@@ -45,6 +44,7 @@ container.addEventListener("click", async (e) => {
             //call template function for redrawing
             mainTemplateSort(resource, orderkey, direction);
         }
+    //event listner for editing row
     } else if (e.target.className == "edit") {
         //display edit page template
         let id = e.target.value;
@@ -58,10 +58,11 @@ container.addEventListener("click", async (e) => {
 
         renderEdit(resource, id);
     }
+    //handler for returning to main page/redrawing
     else if (e.target.id == "return") {
         firstLoadData();
-
     }
+    //event listner for adding items
     else if (e.target.className == "seriesAdd" || e.target.className == "moviesAdd") {
         if (e.target.value == "movies") {
             //display data insert template
@@ -86,8 +87,6 @@ container.addEventListener("click", async (e) => {
             firstLoadData();
         }
     }
-
-
 })
 
 

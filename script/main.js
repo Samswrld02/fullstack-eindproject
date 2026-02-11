@@ -5,8 +5,7 @@ async function firstLoadData() {
     let dataSeries = await get("series");
 
     //run main template of the site function and store mainTemplate for later use
-    let Maintemplate = mainTemplate(dataSeries, dataMovies);
-    return Maintemplate;
+    mainTemplate(dataSeries, dataMovies);
 }
 
 firstLoadData();

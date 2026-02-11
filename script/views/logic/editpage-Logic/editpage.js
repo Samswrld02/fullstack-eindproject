@@ -1,5 +1,4 @@
 //eventlistner edit functionality
-
 async function renderEdit(resource, id) {
     //display editpage template
     let result = await get(resource, id);

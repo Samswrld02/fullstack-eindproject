@@ -5,13 +5,13 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>Document</title>
-    <script src="script/helperFunction.js" defer></script>
-    <script src="./script/toggleSorting.js" defer></script>
-    <script src="./script/main.js" defer></script>
-    <script src="./script/MainTemplate.js" defer></script>
-    <script src="./script/eventlistner.js" defer></script>
-    <script src="./script/Descriptiontemplates.js" defer></script>
-    <script src="./script/editData/editpage.js" defer></script>
+    <script src="./script/views/logic/helpers/helpersFetch/helperFunction.js" defer></script>
+    <script src="./script/views/logic/helpers/eventlistnerHelper/toggleSorting.js" defer></script>
+    <script src="./script/views/logic/mainpage-logic/main.js" defer></script>
+    <script src="./script/views/templates/MainTemplate.js" defer></script>
+    <script src="./script/views/logic/eventlistner/eventlistner.js" defer></script>
+    <script src="./script/views/templates/Descriptiontemplates.js" defer></script>
+    <script src="./script/views/logic/editpage-logic/editpage.js" defer></script>
     <link rel="stylesheet" href="./css/style.css">
 </head>
 
